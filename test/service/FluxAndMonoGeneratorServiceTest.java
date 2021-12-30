@@ -312,4 +312,34 @@ public class FluxAndMonoGeneratorServiceTest {
                 .expectNext("abc")
                 .verifyComplete();
     }
+
+    @Test
+    void explore_generate() {
+        var value=fluxAndMonoGeneratorService.explore_generate().log();
+        StepVerifier.create(value)
+                .expectNextCount(10)
+                .verifyComplete();
+    }
+    @Test
+    void explore_create() {
+        var value=fluxAndMonoGeneratorService.explore_create().log();
+        StepVerifier.create(value)
+                .expectNextCount(6)
+                .verifyComplete();
+    }
+    @Test
+    void explore_handle() {
+        var value=fluxAndMonoGeneratorService.explore_handle().log();
+        StepVerifier.create(value)
+                .expectNextCount(2)
+                .verifyComplete();
+    }
+
+    @Test
+    void explore_create_mono() {
+        var mono=fluxAndMonoGeneratorService.explore_create_mono().log();
+        StepVerifier.create(mono)
+                .expectNext("alex")
+                .verifyComplete();
+    }
 }
